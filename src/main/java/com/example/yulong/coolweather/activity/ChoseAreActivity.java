@@ -62,6 +62,7 @@ public class ChoseAreActivity extends Activity {
         areaList = (ListView) findViewById(R.id.list_area);
         dataList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
+        areaList.setAdapter(adapter);
         weatherDB = CoolWeatherDB.getInstance(this);
         areaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
