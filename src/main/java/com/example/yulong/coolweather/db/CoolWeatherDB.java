@@ -26,7 +26,7 @@ public class CoolWeatherDB {
         db = openHelper.getWritableDatabase();
     }
 
-    public synchronized CoolWeatherDB getInstance(Context context){
+    public synchronized static CoolWeatherDB getInstance(Context context){
         if(coolWeatherDB == null) {
             coolWeatherDB = new CoolWeatherDB(context);
         }
@@ -63,9 +63,9 @@ public class CoolWeatherDB {
             db.insert("city", null, values);
         }
     }
-    public List<City> getAllCity() {
+    public List<City> getAllCity(int provinceId) {
         List<City> list = new ArrayList<>();
-        Cursor cursor = db.query("city", null, null, null, null, null, null);
+        Cursor cursor = db.query("city", null, "province_id = ?", new String[]{String.valueOf(provinceId)}, null, null, null);
         if (cursor.moveToFirst()) {
             do{
                 City city = new City()
@@ -78,7 +78,7 @@ public class CoolWeatherDB {
         return list;
     }
 
-    public void saveConuty(County county) {
+    public void saveCounty(County county) {
         if (county != null) {
             ContentValues values = new ContentValues();
             values.put("county_name", county.getCountyName());
@@ -88,9 +88,9 @@ public class CoolWeatherDB {
         }
     }
 
-    public List<County> getAllCounty() {
+    public List<County> getAllCounty(int cityId) {
         List<County> list = new ArrayList<>();
-        Cursor cursor = db.query("county", null, null, null, null, null, null);
+        Cursor cursor = db.query("county", null, "city_id = ?", new String[]{String.valueOf(cityId)}, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 County county = new County();
