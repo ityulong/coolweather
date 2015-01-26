@@ -8,6 +8,21 @@
         android:layout_height="50dp"
         android:background="#484E61"
         >
+        <Button
+            android:id="@+id/select_weather"
+            android:background="@drawable/home"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <Button
+            android:id="@+id/refresh_weather"
+            android:background="@drawable/refresh"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
         <TextView
             android:id="@+id/county_tv"
             android:layout_width="wrap_content"

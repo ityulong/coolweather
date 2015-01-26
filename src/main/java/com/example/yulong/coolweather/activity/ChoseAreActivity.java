@@ -55,13 +55,15 @@ public class ChoseAreActivity extends Activity {
     private List<County> countyList;
     //当前的级别
     private int currentLevel;
-
+    //是否是从weather页面跳转过来的
+    boolean from_weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("city_selected", false)) {
+        from_weather = getIntent().getBooleanExtra("from_weatherActivity", false);
+        if (preferences.getBoolean("city_selected", false) && !from_weather) {
             Intent intent = new Intent(this, WeatherActivity.class);
             startActivity(intent);
             finish();
@@ -228,6 +230,10 @@ public class ChoseAreActivity extends Activity {
                 queryProvince();
                 break;
             case PROVINCE_LEVEL:
+                if(from_weather) {
+                    Intent intent = new Intent(this, WeatherActivity.class);
+                    startActivity(intent);
+                }
                 finish();
         }
     }

@@ -1,6 +1,7 @@
 package com.example.yulong.coolweather.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,7 +21,7 @@ import com.example.yulong.coolweather.util.Utility;
 /**
  * Created by yulong on 2015/1/25.
  */
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends Activity implements View.OnClickListener{
     private RelativeLayout weatherInfoLayout;
     private TextView cityNameTv;
     private TextView publishTv;
@@ -27,6 +29,8 @@ public class WeatherActivity extends Activity {
     private TextView temp1Tv;
     private TextView temp2Tv;
     private TextView currentDateTv;
+    private Button selectBtn;
+    private Button refreshBtn;
     @Override
     public void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
@@ -39,6 +43,11 @@ public class WeatherActivity extends Activity {
         temp1Tv = (TextView) findViewById(R.id.temp_start);
         temp2Tv = (TextView) findViewById(R.id.temp_end);
         currentDateTv = (TextView) findViewById(R.id.weather_date);
+        selectBtn = (Button) findViewById(R.id.select_weather);
+        refreshBtn = (Button) findViewById(R.id.refresh_weather);
+        selectBtn.setOnClickListener(this);
+        refreshBtn.setOnClickListener(this);
+
         String countyCode = getIntent().getStringExtra("county_code");
         if (!TextUtils.isEmpty(countyCode)) {
             publishTv.setText("同步中...");
@@ -105,5 +114,29 @@ public class WeatherActivity extends Activity {
         currentDateTv.setText(preferences.getString("current_date",""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameTv.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.select_weather:
+                Intent intent = new Intent(this, ChoseAreActivity.class);
+                intent.putExtra("from_weatherActivity", true);
+                startActivity(intent);
+                finish();
+
+                break;
+            case R.id.refresh_weather:
+                publishTv.setText("同步中...");
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                String countyCode = preferences.getString("weather_code", "");
+                if (!TextUtils.isEmpty(countyCode)) {
+                    queryWeatherInfo(countyCode);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
