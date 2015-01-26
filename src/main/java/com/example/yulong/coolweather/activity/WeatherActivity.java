@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yulong.coolweather.R;
+import com.example.yulong.coolweather.service.AutoWeatherService;
 import com.example.yulong.coolweather.util.HttpCallBackListener;
 import com.example.yulong.coolweather.util.HttpUtil;
 import com.example.yulong.coolweather.util.Utility;
@@ -114,6 +115,8 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
         currentDateTv.setText(preferences.getString("current_date",""));
         weatherInfoLayout.setVisibility(View.VISIBLE);
         cityNameTv.setVisibility(View.VISIBLE);
+        Intent i = new Intent(this, AutoWeatherService.class);
+        startService(i);
     }
 
     @Override
