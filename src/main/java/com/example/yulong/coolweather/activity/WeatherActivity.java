@@ -127,7 +127,6 @@ public class WeatherActivity extends Activity implements View.OnClickListener{
                 intent.putExtra("from_weatherActivity", true);
                 startActivity(intent);
                 finish();
-
                 break;
             case R.id.refresh_weather:
                 publishTv.setText("同步中...");
