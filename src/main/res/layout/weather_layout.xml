@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:background="@drawable/weather_background_gradient">
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#484E61"
-        >
+        android:background="@android:color/transparent" >
         <Button
             android:id="@+id/select_weather"
             android:background="@drawable/home"
@@ -28,73 +27,83 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="24sp"
-            android:textColor="#fff"
-            />
+            android:textSize="22sp"
+            android:textColor="#FFFFFF" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/msg_layout"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#27A5F9"
-            >
+            android:background="@drawable/weather_background_gradient">
+
+            <ImageView
+                android:id="@+id/weather_icon_iv"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/weather_msg_layout"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_weather_unknown" />
+
+            <LinearLayout
+                android:id="@+id/weather_msg_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/weather_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="36sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/publish_time"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="#fff"
+                android:textColor="#E0E0E0"
+                android:textSize="16sp"
+                android:layout_margin="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/weather_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="40sp"
-                android:textColor="#fff"
-                android:layout_centerInParent="true"
-                />
-            <TextView
-                android:id="@+id/weather_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_above="@id/weather_msg"
-                android:layout_alignStart="@id/weather_msg"
-                />
+
             <LinearLayout
                 android:id="@+id/temp_area"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/weather_msg"
+                android:layout_below="@id/weather_msg_layout"
                 android:gravity="center"
-                >
+                android:layout_marginTop="10dp">
                 <TextView
                     android:id="@+id/temp_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
-                    android:textSize="40sp"
-
-                    />
+                    android:textColor="#FFFFFF"
+                    android:textSize="60sp"
+                    android:textStyle="bold"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="~"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:textColor="#fff"
-                    android:textSize="40sp"
-
-                    />
+                    android:textColor="#FFFFFF"
+                    android:textSize="60sp" />
                 <TextView
                     android:id="@+id/temp_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
-                    android:textSize="40sp"
-
-                    />
+                    android:textColor="#FFFFFF"
+                    android:textSize="60sp"
+                    android:textStyle="bold"/>
                 </LinearLayout>
             </RelativeLayout>
 </LinearLayout>

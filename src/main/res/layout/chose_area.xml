@@ -3,24 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:background="@drawable/weather_background_gradient">
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#484E61"
-        >
+        android:background="@android:color/transparent">
         <TextView
             android:id="@+id/title_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="24sp"
-            android:textColor="#fff"
-            />
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"/>
         </RelativeLayout>
     <ListView
         android:id="@+id/list_area"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"/>
 </LinearLayout>

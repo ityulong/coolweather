@@ -73,7 +73,8 @@ public class ChoseAreActivity extends Activity {
         titleAre = (TextView) findViewById(R.id.title_area);
         areaList = (ListView) findViewById(R.id.list_area);
         dataList = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
+        // Use the new custom layout for the ArrayAdapter
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item_area, R.id.area_name_tv, dataList);
         areaList.setAdapter(adapter);
         weatherDB = CoolWeatherDB.getInstance(this);
         areaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,17 +206,20 @@ public class ChoseAreActivity extends Activity {
         });
     }
 
-    private void closeProgressDialog() {
+    // Corrected ProgressDialog methods
+    private void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("正在加载");
+            progressDialog.setMessage(getString(R.string.loading_text));
             progressDialog.setCanceledOnTouchOutside(false);
         }
-        progressDialog.show();
+        if (!progressDialog.isShowing()) {
+            progressDialog.show();
+        }
     }
 
-    private void showProgressDialog() {
-        if (progressDialog != null) {
+    private void closeProgressDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
     }
